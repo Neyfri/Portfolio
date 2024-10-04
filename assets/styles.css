@@ -331,16 +331,16 @@ img {
   z-index: var(--z-back);
 }
 .skills__html {
-  width: 95%;
+  width: 60%;
 }
 .skills__css {
-  width: 50%;
+  width: 53%;
 }
 .skills__js {
-  width: 65%;
+  width: 67%;
 }
 .skills__ux {
-  width: 60%;
+  width: 61%;
 }
 .skills__img {
   border-radius: 0.5rem;
@@ -435,18 +435,16 @@ img {
 /* ===== TOP BUTTON =====*/
 .scrollTop {
   position: fixed;
+  width: 5px;
   bottom: 30px;
   right: 30px;
   padding: 10px 8px;
-  background-color: #fff;
+  background-color: transparent;
   color: #fff;
   border-radius: 50px;
   border-radius: 1px solid #fff;
   cursor: pointer;
   transition: all 0.5s ease 0s;
-}
-.scrollTop:hover {
-  background-color: var(--first-color);
 }
 /* ===== FOOTER =====*/
 .footer {

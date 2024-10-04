@@ -1,3 +1,9 @@
+const enviar = document.getElementById('enviarbtn')
+
+enviar.addEventListener('click', () => {
+    Window.alert('Click')
+})
+
 /*===== MENU SHOW =====*/ 
 const showMenu = (toggleId, navId) =>{
     const toggle = document.getElementById(toggleId),
@@ -59,9 +65,49 @@ sr.reveal('.skills__data, .card, .contact__input',{interval: 200});
 function scrollToTop() {
     window.scrollTo(0, 0)
 }
-
+/*===== VARIABLE TO UPDATE YEAR =====*/
 var anioactual = new Date();
 const tiempo = document.getElementById('tiempo');
 tiempo.innerHTML = anioactual.getFullYear();
 
+/*===== TO SUBMIT THE MESSAGE =====*/
+
+const form = document.getElementById('form');
+const result = document.getElementById('result');
+
+form.addEventListener('submit', function(e) {
+  e.preventDefault();
+  const formData = new FormData(form);
+  const object = Object.fromEntries(formData);
+  const json = JSON.stringify(object);
+  result.innerHTML = "Por favor espera un momento..."
+
+    fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: json
+        })
+        .then(async (response) => {
+            let json = await response.json();
+            if (response.status == 200) {
+                result.innerHTML = "Mensaje enviado sastifactoriamente";
+            } else {
+                console.log(response);
+                result.innerHTML = json.message;
+            }
+        })
+        .catch(error => {
+            console.log(error);
+            result.innerHTML = "Algo salio mal!";
+        })
+        .then(function() {
+            form.reset();
+            setTimeout(() => {
+                result.style.display = "none";
+            }, 3000);
+        });
+});
 
